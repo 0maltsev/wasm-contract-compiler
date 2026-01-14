@@ -13,12 +13,12 @@ endif()
 
 add_subdirectory(third_party/binaryen)
 
-file(GLOB_RECURSE SOURCES
+file(GLOB_RECURSE HFTC_SOURCES
     CONFIGURE_DEPENDS
     src/*.cpp
 )
 
-add_executable(hftc ${SOURCES})
+add_executable(hftc ${HFTC_SOURCES})
 
 target_include_directories(hftc
     PRIVATE

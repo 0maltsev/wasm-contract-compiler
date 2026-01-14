@@ -9,7 +9,7 @@ class Parser {
     size_t current = 0;
 public:
     Parser(std::vector<Token> toks) : tokens(std::move(toks)) {}
-    std::unique_ptr<Function> parse_function();
+    std::unique_ptr<HftFunction> parse_function();
 private:
     bool match(TokenType type);
     Token consume(TokenType type, const char* msg);

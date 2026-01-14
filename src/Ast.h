@@ -31,7 +31,7 @@ struct IfExpr : Expr {
         : cond(std::move(c)), then_expr(std::move(t)), else_expr(std::move(e)) {}
 };
 
-struct Function {
+struct HftFunction {
     std::string event_name; // "market_update"
     std::string param_name;
     Type param_type = Type::F64;

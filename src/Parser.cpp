@@ -51,7 +51,7 @@ std::unique_ptr<Expr> Parser::parse_expression() {
     return parse_binary();
 }
 
-std::unique_ptr<Function> Parser::parse_function() {
+std::unique_ptr<HftFunction> Parser::parse_function() {
     consume(TokenType::ON, "Expected 'on'");
     auto event_tok = consume(TokenType::IDENT, "Expected event name");
     consume(TokenType::LPAREN, "Expected '('");
@@ -70,7 +70,7 @@ std::unique_ptr<Function> Parser::parse_function() {
     auto body = parse_expression();
     consume(TokenType::RBRACE, "Expected '}'");
 
-    auto func = std::make_unique<Function>();
+    auto func = std::make_unique<HftFunction>();
     func->event_name = event_tok.lexeme;
     func->param_name = param_tok.lexeme;
     func->param_type = param_type;
