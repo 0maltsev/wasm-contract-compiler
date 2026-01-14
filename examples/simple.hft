@@ -1,0 +1,6 @@
+on market_update(price: f64) -> i32 {
+    if price > 100.5 then
+        1
+    else
+        0
+}
