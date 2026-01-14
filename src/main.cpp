@@ -21,6 +21,11 @@ int main(int argc, char** argv) {
     try {
         Lexer lexer(source);
         auto tokens = lexer.tokenize();
+
+        for (const auto& tok : tokens) {
+            std::cout << "Token: " << static_cast<int>(tok.type) << " '" << tok.lexeme << "'\n";
+        }
+
         Parser parser(tokens);
         auto func = parser.parse_function();
 

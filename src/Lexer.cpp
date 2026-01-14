@@ -1,6 +1,7 @@
 #include "Lexer.h"
 #include <cctype>
 #include <stdexcept>
+#include <iostream>
 
 void Lexer::skip_whitespace() {
     while (peek() && std::isspace(peek())) advance();
@@ -15,9 +16,18 @@ Token Lexer::read_number() {
 
 Token Lexer::read_identifier() {
     size_t start = pos;
-    while (std::isalpha(peek()) || peek() == '_') advance();
+    if (!std::isalpha(peek())) { 
+        advance();
+        return {TokenType::IDENT, std::string(1, source[start])};
+    }
+    advance();
+
+    while (std::isalnum(peek()) || peek() == '_') {
+        advance();
+    }
+
     std::string ident = source.substr(start, pos - start);
-    
+
     if (ident == "if") return {TokenType::IF, ident};
     if (ident == "then") return {TokenType::THEN, ident};
     if (ident == "else") return {TokenType::ELSE, ident};
